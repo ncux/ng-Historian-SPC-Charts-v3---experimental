@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TagsService } from '../tags.service';
 import { QueryUrlBuilderService } from '../query-url-builder.service';
@@ -9,7 +9,9 @@ import { ChartDataService } from '../chart-data.service';
   templateUrl: './form-inputs.component.html',
   styleUrls: ['./form-inputs.component.css']
 })
-export class FormInputsComponent implements OnInit {
+export class FormInputsComponent implements AfterContentInit {
+
+  today = String(Date.now());
 
   tagsListArray: any[] = [];
 
@@ -20,8 +22,9 @@ export class FormInputsComponent implements OnInit {
       private chartDataService: ChartDataService
       ) { }
 
-  ngOnInit() {
+  ngAfterContentInit() {
     this.getTags();
+    this.elementRef.nativeElement.querySelector('#endDate').defaultValue = this.today;
   }
 
 

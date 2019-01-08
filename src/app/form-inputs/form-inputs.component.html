@@ -35,7 +35,7 @@
             </div>
 
             <label for="endDate" class="ml-5 input-labels">结束日期</label>
-            <input id="endDate" ngModel #endDate="ngModel" name="endDate" type="date" required class="form-control-sm">
+            <input id="endDate" [value]="today | date: 'MM/dd/yyyy'" ngModel #endDate="ngModel" name="endDate" type="date" required class="form-control-sm">
             <div *ngIf="endDate.touched && endDate.invalid" class="alert alert-danger">
                 Input an end date!
             </div>

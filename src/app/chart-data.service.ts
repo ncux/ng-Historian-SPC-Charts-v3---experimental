@@ -100,7 +100,7 @@ export class ChartDataService {
           this.MeanArray2 = [...this.MeanArray];
           this.MeanArray2.fill(this.getRandomNumber(75000, 50000));       //  (75000, 50000)
           this.UCLarray2 = [...this.UCLarray];
-          this.UCLarray2.fill(this.getRandomNumber(115000, 90000));      //   (120000, 100000)
+          this.UCLarray2.fill(this.getRandomNumber(115000, 85000));      //   (120000, 100000)
           this.LCLarray2 = [...this.LCLarray];
           this.LCLarray2.fill(this.getRandomNumber(40000, 20000));        //    (45000, 20000)
         } else {
