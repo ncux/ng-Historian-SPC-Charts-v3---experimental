@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class ChartDataService {
   UCLDataObject = {};   // holds the UCL values for the chart
   LCLDataObject = {};   // holds the LCL values for the chart
   ChartDataObjectsArray = [];   // holds values for ChartData
+  tableData = [];   // holds table data
 
   // Statistical Process Control parameters
   mean;
@@ -45,7 +47,7 @@ export class ChartDataService {
   dataQueryUrl = '';
   staticData = 'assets/data/WIN-9DBOGP80695.Simulation00052 - OG.json';   // for development only
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getDataAndSetChartValues() {
     return this.http.get(this.staticData).subscribe(historianData => {    // switch URL to dataQueryUrl when ready for production!
@@ -92,8 +94,10 @@ export class ChartDataService {
         if (this.sampleSize > 1) {
           this.numberValuesArray2 = [...this.numberValuesArray];
           this.numberValuesArray2 = this.numberValuesArray2.fill().map(() => Math.round(Math.random() * 100000));
+          this.tableData.push(this.ChartLabels, this.numberValuesArray2, this.LCLarray2, this.MeanArray2, this.UCLarray2);
         } else {
           this.numberValuesArray2 = [...this.numberValuesArray];
+          this.tableData.push(this.ChartLabels, this.numberValuesArray, this.LCLarray, this.MeanArray, this.UCLarray);
         }
 
         if (this.numberOfSamples > 1) {
@@ -103,10 +107,12 @@ export class ChartDataService {
           this.UCLarray2.fill(this.getRandomNumber(115000, 85000));      //   (120000, 100000)
           this.LCLarray2 = [...this.LCLarray];
           this.LCLarray2.fill(this.getRandomNumber(40000, 20000));        //    (45000, 20000)
+          this.tableData.push(this.ChartLabels, this.numberValuesArray2, this.LCLarray2, this.MeanArray2, this.UCLarray2);
         } else {
           this.MeanArray2 = [...this.MeanArray];
           this.UCLarray2 = [...this.UCLarray];
           this.LCLarray2 = [...this.LCLarray];
+          this.tableData.push(this.ChartLabels, this.numberValuesArray, this.LCLarray, this.MeanArray, this.UCLarray);
         }
 
       });

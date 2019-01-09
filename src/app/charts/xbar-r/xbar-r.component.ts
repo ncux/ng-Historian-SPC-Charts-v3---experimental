@@ -16,9 +16,9 @@ export class XbarRComponent implements AfterViewInit {
   tagName = '';
   chart = [];
 
-  constructor(private elementRef: ElementRef, private chartDataService: ChartDataService, private queryUrlService: QueryUrlBuilderService) {
-
-  }
+  constructor(private elementRef: ElementRef,
+              private chartDataService: ChartDataService,
+              private queryUrlService: QueryUrlBuilderService) {  }
 
   ngAfterViewInit() {
     this.tagName = this.queryUrlService.tagName;
@@ -68,5 +68,6 @@ export class XbarRComponent implements AfterViewInit {
     });
 
   }
+
 
 }

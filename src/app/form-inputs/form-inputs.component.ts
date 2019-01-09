@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { TagsService } from '../tags.service';
 import { QueryUrlBuilderService } from '../query-url-builder.service';
 import { ChartDataService } from '../chart-data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-form-inputs',
@@ -18,6 +19,7 @@ export class FormInputsComponent implements AfterContentInit {
 
   constructor(
       private elementRef: ElementRef,
+      private router: Router,
       private tagsGetterService: TagsService,
       private queryUrlService: QueryUrlBuilderService,
       private chartDataService: ChartDataService

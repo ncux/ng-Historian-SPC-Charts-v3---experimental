@@ -9,6 +9,10 @@ import { ChartDataService } from '../../chart-data.service';
 })
 export class XbarRTableComponent implements OnInit {
 
+  // sample size and sampling frequency
+  sampleSize: number;
+  numberOfSamples: number;
+
   table1;
   table2;
   table3;
@@ -23,8 +27,21 @@ export class XbarRTableComponent implements OnInit {
 
   ngOnInit() {
     this.tagName = this.queryUrlService.tagName;
-    this.tableData.push(this.chartDataService.ChartLabels, this.chartDataService.numberValuesArray, this.chartDataService.LCLarray, this.chartDataService.MeanArray, this.chartDataService.UCLarray);
-    console.log(this.tableData);
+    this.sampleSize = this.chartDataService.sampleSize;
+    this.numberOfSamples = this.chartDataService.numberOfSamples;
+
+    if (this.sampleSize > 1) {
+      this.tableData.push(this.chartDataService.ChartLabels, this.chartDataService.numberValuesArray2, this.chartDataService.LCLarray2, this.chartDataService.MeanArray2, this.chartDataService.UCLarray2);
+    } else {
+      this.tableData.push(this.chartDataService.ChartLabels, this.chartDataService.numberValuesArray, this.chartDataService.LCLarray, this.chartDataService.MeanArray, this.chartDataService.UCLarray);
+    }
+
+    if (this.numberOfSamples > 1) {
+      this.tableData.push(this.chartDataService.ChartLabels, this.chartDataService.numberValuesArray2, this.chartDataService.LCLarray2, this.chartDataService.MeanArray2, this.chartDataService.UCLarray2);
+    } else {
+      this.tableData.push(this.chartDataService.ChartLabels, this.chartDataService.numberValuesArray, this.chartDataService.LCLarray, this.chartDataService.MeanArray, this.chartDataService.UCLarray);
+    }
+
     this.createTable();
   }
 
@@ -46,21 +63,21 @@ export class XbarRTableComponent implements OnInit {
     this.table3 = this.elementRef.nativeElement.querySelector('#table3');
     this.tableData[2].forEach(LCL => {
       const row = document.createElement('tr');
-      row.innerHTML = `<td>${LCL}</td>`;
+      row.innerHTML = `<td>${LCL.toFixed(0)}</td>`;
       this.table3.append(row);
     });
 
     this.table4 = this.elementRef.nativeElement.querySelector('#table4');
     this.tableData[3].forEach(mean => {
       const row = document.createElement('tr');
-      row.innerHTML = `<td>${mean}</td>`;
+      row.innerHTML = `<td>${mean.toFixed(0)}</td>`;
       this.table4.append(row);
     });
 
     this.table5 = this.elementRef.nativeElement.querySelector('#table5');
     this.tableData[4].forEach(UCL => {
       const row = document.createElement('tr');
-      row.innerHTML = `<td>${UCL}</td>`;
+      row.innerHTML = `<td>${UCL.toFixed(0)}</td>`;
       this.table5.append(row);
     });
   }
