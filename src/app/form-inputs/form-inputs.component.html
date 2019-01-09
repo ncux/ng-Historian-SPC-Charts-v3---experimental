@@ -23,19 +23,19 @@
 
         <div class="form-group p-2">
             <label for="startDate" class="input-labels">开始日期</label>
-            <input ngModel #startDate="ngModel" name="startDate" id="startDate" type="date" required value="2018-07-22" class="form-control-sm">
+            <input ngModel #startDate="ngModel" name="startDate" id="startDate" type="date" required [value]="2018-07-22" class="form-control-sm">
             <div *ngIf="startDate.touched && startDate.invalid" class="alert alert-danger">
                 Input a start date!
             </div>
 
             <label for="startTime" class="ml-5 input-labels">开始时间</label>
-            <input id="startTime" ngModel #startTime="ngModel" name="startTime" type="time" required class="form-control-sm">
+            <input id="startTime" value="12:00" ngModel #startTime="ngModel" name="startTime" type="time" required class="form-control-sm">
             <div *ngIf="startTime.touched && startTime.invalid" class="alert alert-danger">
                 Input a start time!
             </div>
 
             <label for="endDate" class="ml-5 input-labels">结束日期</label>
-            <input id="endDate" [value]="today | date: 'MM/dd/yyyy'" ngModel #endDate="ngModel" name="endDate" type="date" required class="form-control-sm">
+            <input id="endDate" value="today | date: 'MM/dd/yyyy'" ngModel #endDate="ngModel" name="endDate" type="date" required class="form-control-sm">
             <div *ngIf="endDate.touched && endDate.invalid" class="alert alert-danger">
                 Input an end date!
             </div>

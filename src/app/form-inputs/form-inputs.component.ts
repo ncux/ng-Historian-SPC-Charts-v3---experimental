@@ -12,6 +12,7 @@ import { ChartDataService } from '../chart-data.service';
 export class FormInputsComponent implements AfterContentInit {
 
   today = String(Date.now());
+  startDate = '2019-01-08';
 
   tagsListArray: any[] = [];
 

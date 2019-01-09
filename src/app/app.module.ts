@@ -15,6 +15,7 @@ import { FormInputsComponent } from './form-inputs/form-inputs.component';
 import { IXMRComponent } from './charts/ixmr/ixmr.component';
 import { XbarRComponent } from './charts/xbar-r/xbar-r.component';
 import { XbarSComponent } from './charts/xbar-s/xbar-s.component';
+import { XbarRTableComponent } from './tables/xbar-r-table/xbar-r-table.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { XbarSComponent } from './charts/xbar-s/xbar-s.component';
     IXMRComponent,
     XbarRComponent,
     XbarSComponent,
+    XbarRTableComponent,
 
   ],
   imports: [
